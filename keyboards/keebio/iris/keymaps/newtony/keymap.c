@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_ESC , KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, LALT_T(KC_LBRC),     KC_RALT, KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
+     KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, LALT_T(KC_F11),     KC_RALT, KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                       MO(1), KC_LCTL, KC_LGUI,                  KC_ENT,   KC_SPC, LT(2,KC_BSPC)
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -33,11 +33,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL, KC_TRNS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     RGB_TOG, KC_MPRV, KC_MPLY, KC_MNXT, RGB_MOD, RGB_RMOD,                           KC_HOME, KC_PGUP,  KC_UP,  KC_PGDN, KC_UNDS,  KC_PLUS,
+     RGB_TOG, KC_MPRV, KC_MPLY, KC_MNXT, RGB_MOD, RGB_RMOD,                           KC_HOME, KC_PGUP,  KC_UP,  KC_PGDN, KC_F16,  KC_F17,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_CAPS,  KC_PSCR, KC_VOLD, KC_VOLU, KC_MUTE, RGB_HUI,                            KC_END, KC_LEFT, KC_DOWN, KC_RGHT,  KC_INS,  KC_DEL,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
- LGUI(KC_TAB), RGB_VAI, RGB_VAD, RGB_SAI, RGB_SAD, RGB_HUD, KC_TRNS,           KC_TRNS, KC_LBRC,  KC_RBRC, KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,
+ LGUI(KC_TAB), RGB_VAI, RGB_VAD, RGB_SAI, RGB_SAD, RGB_HUD, KC_TRNS,           KC_TRNS, KC_LBRC,  KC_RBRC, KC_LCBR, KC_RCBR, KC_UNDS, KC_PLUS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                       TO(0), KC_TRNS, KC_TRNS,                   KC_TRNS, KC_RGUI,  TO(2)
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -101,9 +101,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
-            tap_code(KC_VOLU);
+            tap_code(KC_F18);
         } else {
-            tap_code(KC_VOLD);
+            tap_code(KC_F19);
         }
     }
     else if (index == 1) {
