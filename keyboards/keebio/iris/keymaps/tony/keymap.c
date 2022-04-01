@@ -33,13 +33,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL, KC_TRNS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     RGB_TOG, KC_MPRV, KC_MPLY, KC_MNXT, RGB_MOD, RGB_RMOD,                           KC_HOME, KC_PGUP,  KC_UP,  KC_PGDN, KC_UNDS,  KC_PLUS,
+     RGB_TOG, KC_MPRV, KC_MPLY, KC_MNXT, RGB_MOD, RGB_RMOD,                           KC_HOME, KC_PGUP,  KC_UP,  KC_PGDN, KC_LBRC,  KC_RBRC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_CAPS,  KC_PSCR, KC_VOLD, KC_VOLU, KC_MUTE, RGB_HUI,                            KC_END, KC_LEFT, KC_DOWN, KC_RGHT,  KC_INS,  KC_DEL,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
- LGUI(KC_TAB), RGB_VAI, RGB_VAD, RGB_SAI, RGB_SAD, RGB_HUD, KC_TRNS,           KC_TRNS, KC_LBRC,  KC_RBRC, KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,
+ LGUI(KC_TAB), RGB_VAI, RGB_VAD, RGB_SAI, RGB_SAD, RGB_HUD, KC_TRNS,           KC_F18, KC_F16, KC_F17, KC_LCBR, KC_RCBR, KC_UNDS, KC_PLUS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                      TO(0), KC_TRNS, KC_TRNS,                   KC_TRNS, KC_RGUI,  TO(2)
+                                      TO(0), KC_TRNS, KC_TRNS,                    KC_F19,  KC_F11,  TO(2)
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -58,19 +58,60 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case LOWER:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      } else {
+        layer_off(_LOWER);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case RAISE:
+      if (record->event.pressed) {
+        layer_on(_RAISE);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      } else {
+        layer_off(_RAISE);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_ADJUST);
+      } else {
+        layer_off(_ADJUST);
+      }
+      return false;
+      break;
+  }
+  return true;
+}
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
-            tap_code(KC_WH_U);
+            tap_code(KC_F18);
         } else {
-            tap_code(KC_WH_D);
+            tap_code(KC_F19);
         }
     }
     else if (index == 1) {
         if (clockwise) {
-            tap_code(KC_MS_U);
+            tap_code(KC_PGDN);
         } else {
-            tap_code(KC_MS_D);
+            tap_code(KC_PGUP);
         }
     }
+    return true;
 }
