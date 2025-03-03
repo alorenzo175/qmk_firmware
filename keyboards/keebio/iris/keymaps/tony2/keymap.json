@@ -12,7 +12,7 @@
                                                         "MO(1)", "KC_LCTL", "KC_LALT" ,    "KC_ENT" , "KC_SPC", "LT(2,KC_BSPC)"
         ],
         [
-            "KC_TILD", "KC_EXLM", "KC_AT"  , "KC_HASH", "KC_DLR" , "KC_PERC",                       "KC_CIRC", "KC_AMPR", "KC_ASTR", "KC_LPRN", "KC_RPRN", "KC_PGUP",
+            "KC_TILD", "KC_EXLM", "KC_AT"  , "KC_HASH", "KC_DLR" , "KC_PERC",                       "KC_CIRC", "KC_AMPR", "KC_ASTR", "KC_MINS", "KC_EQL",  "KC_TRNS",
             "RM_TOGG", "KC_MPRV", "KC_MPLY", "KC_MNXT", "RM_NEXT", "RM_PREV",                       "KC_HOME", "KC_PGUP",  "KC_UP" , "KC_PGDN", "KC_LBRC", "KC_RBRC",
             "KC_CAPS", "KC_PSCR", "KC_VOLD", "KC_VOLU", "KC_MUTE", "RM_HUEU",                       "KC_END" , "KC_LEFT", "KC_DOWN", "KC_RGHT", "KC_INS" , "KC_DEL" ,
         "LGUI(KC_TAB)","RM_VALU", "RM_VALD", "RM_SATU", "RM_SATD", "RM_HUED", "KC_TRNS", "KC_F18", "KC_F16"  , "KC_F17" , "KC_LCBR", "KC_RCBR"  , "KC_UNDS", "KC_PLUS",
